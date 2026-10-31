@@ -1,0 +1,676 @@
+/* =========================================
+   1. GENERAL STYLES
+========================================= */
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* Reset default browser spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Entire webpage */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #252a32;
+}
+
+/* =========================================
+   2. MAIN CHAT CONTAINER
+========================================= */
+
+/* Make chat app fit the entire desktop screen */
+.chat-container {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  background-color: #edf2f6;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+/* =========================================
+   3. CHAT HEADER
+========================================= */
+
+.chat-header {
+  padding: 10px 20px;
+  margin: 0 20px;
+  border-bottom: 1px solid #d0d6dc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h2 {
+  font-size: 20px;
+  color: #424750;
+}
+
+.chat-header p {
+  color: #858b93;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.members {
+  color: #777;
+  font-size: 13px;
+}
+
+/* =========================================
+   4. CHAT MESSAGES
+========================================= */
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Welcome message */
+.empty-message {
+  margin: auto;
+  text-align: center;
+  color: #777;
+}
+
+.empty-message h3 {
+  margin-bottom: 8px;
+  color: #505761;
+}
+
+/* Individual message row */
+.message-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* User avatar */
+.avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background-color: #e77e82;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Message content */
+.message-content {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Username and time */
+.message-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.message-info strong {
+  color: #454950;
+  font-size: 14px;
+}
+
+.message-info span {
+  font-size: 11px;
+  color: #858b93;
+}
+
+/* Message bubble */
+.message-bubble {
+  background-color: white;
+  padding: 14px;
+  border-radius: 0 14px 14px 14px;
+  color: #454950;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   5. LIKE BUTTON
+========================================= */
+
+.like-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.like-section button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #e66b75;
+}
+
+.like-section button:hover {
+  transform: scale(1.2);
+}
+
+.like-section span {
+  font-size: 13px;
+  color: #666;
+}
+
+/* =========================================
+   6. MESSAGE INPUT AREA
+========================================= */
+
+.chat-input {
+  margin: 10px 15px;
+  padding: 2px 12px;
+  border: 1px solid #a5abb2;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  position: relative;
+}
+
+/* Main chat textbox only */
+.chat-input > input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px;
+  font-size: 15px;
+}
+
+/* Emoji button */
+.emoji-button {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+.emoji-toggle {
+  width: 38px;
+  height: 38px;
+  margin: 5px;
+  padding: 5px;
+  background: transparent;
+  border: none !important;
+  outline: none;
+  box-shadow: none !important;
+  color: #999;
+  font-size: 45px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.emoji-toggle:hover {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+.emoji-toggle:focus,
+.emoji-toggle:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Send button */
+.send-button {
+  border: none;
+  background-color: #568fe5;
+  color: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.send-button:hover {
+  background-color: #3576d0;
+}
+
+/* =========================================
+   7. EMOJI PICKER PANEL
+========================================= */
+
+.emoji-picker {
+  position: absolute;
+  bottom: 55px;
+  right: 0;
+  width: 270px;
+  height: 400px;
+  z-index: 100;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #212121;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   8. EMOJI PICKER THEME
+========================================= */
+
+.custom-emoji-picker {
+  --epr-highlight-color: #a855f7;
+  --epr-hover-bg-color: #454545;
+  --epr-focus-bg-color: #212121;
+  color: #ffffff !important;
+}
+
+/* Category headings */
+.custom-emoji-picker .epr-emoji-category-label {
+  color: #ffffff !important;
+  font-size: 14px;
+}
+
+/* Search textbox */
+.custom-emoji-picker .epr-search-container input {
+  color: #ffffff !important;
+  font-size: 13px;
+  border: 1px solid #ffffff !important;
+}
+
+.custom-emoji-picker .epr-search-container input::placeholder {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+.custom-emoji-picker .epr-search-container input:focus {
+  border-color: #ffffff !important;
+  outline: none !important;
+}
+
+/* =========================================
+   9. EMOJI HOVER AND SELECTION
+========================================= */
+
+/* Give every emoji a circular shape */
+.custom-emoji-picker .epr-emoji {
+  border-radius: 50% !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Grey circular background on hover */
+.custom-emoji-picker .epr-emoji:hover {
+  background-color: #454545 !important;
+  border-radius: 50% !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Grey circular background while clicking */
+.custom-emoji-picker .epr-emoji:active,
+.custom-emoji-picker .epr-emoji:focus,
+.custom-emoji-picker .epr-emoji:focus-visible {
+  background-color: #454545 !important;
+  border-radius: 50% !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* =========================================
+   10. CATEGORY ICONS
+========================================= */
+
+/* =========================================
+   10. CATEGORY ICONS
+========================================= */
+
+/* =========================================
+   10. CATEGORY ICONS
+========================================= */
+
+/* Remove default borders, outlines and focus effects */
+.custom-emoji-picker .epr-cat-btn,
+.custom-emoji-picker .epr-cat-btn:focus,
+.custom-emoji-picker .epr-cat-btn:focus-visible,
+.custom-emoji-picker .epr-cat-btn:active {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 50% !important;
+}
+
+/* Normal category */
+.custom-emoji-picker .epr-cat-btn {
+  background-color: transparent !important;
+}
+
+/* Hover: circular grey background, purple icon */
+.custom-emoji-picker .epr-cat-btn:hover:not(.epr-active) {
+  background-color: #454545 !important;
+  color: #a855f7 !important;
+  border-radius: 50% !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Selected category: dark background, purple icon */
+.custom-emoji-picker .epr-cat-btn.epr-active,
+.custom-emoji-picker .epr-cat-btn.epr-active:hover,
+.custom-emoji-picker .epr-cat-btn.epr-active:focus,
+.custom-emoji-picker .epr-cat-btn.epr-active:focus-visible {
+  background-color: #212121 !important;
+  color: #a855f7 !important;
+  border-radius: 50% !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any default blue pseudo-element effects */
+.custom-emoji-picker .epr-cat-btn::before,
+.custom-emoji-picker .epr-cat-btn::after {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* =========================================
+   11. MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 600px) {
+  .chat-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .chat-header {
+    margin: 0 10px;
+  }
+
+  .chat-messages {
+    padding: 15px;
+  }
+
+  .emoji-picker {
+    height: 480px;
+    max-width: calc(100vw - 40px);
+  }
+}
+
+/* Make click and focus highlight match the panel background */
+.custom-emoji-picker .epr-cat-btn:focus,
+.custom-emoji-picker .epr-cat-btn:focus-visible,
+.custom-emoji-picker .epr-cat-btn:active {
+  background-color: #212121 !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Match the emoji picker's focus theme */
+.custom-emoji-picker {
+  --epr-focus-bg-color: #212121 !important;
+  --epr-highlight-color: #a855f7 !important;
+}
+
+/* =========================================
+   COMPACT EMOJI PICKER SPACING
+========================================= */
+
+/* =========================================
+   EXTRA COMPACT EMOJI PICKER
+========================================= */
+
+/* Reduce overall picker spacing */
+.custom-emoji-picker {
+  padding: 4px !important;
+}
+
+/* Compact search section */
+.custom-emoji-picker .epr-header {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Search bar */
+.custom-emoji-picker .epr-search-container {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.custom-emoji-picker .epr-search-container input {
+  height: 28px !important;
+  padding: 3px 7px !important;
+  font-size: 12px !important;
+}
+
+/* Compact category navigation */
+.custom-emoji-picker .epr-category-nav {
+  padding: 0 !important;
+  margin: 2px 0 !important;
+  gap: 0 !important;
+}
+
+.custom-emoji-picker .epr-cat-btn {
+  width: 27px !important;
+  height: 27px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Reduce emoji section spacing */
+.custom-emoji-picker .epr-body {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.custom-emoji-picker .epr-emoji-category {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Smaller category headings */
+.custom-emoji-picker .epr-emoji-category-label {
+  font-size: 12px !important;
+  padding: 3px 5px !important;
+  margin: 0 !important;
+}
+
+/* Compact emoji grid */
+.custom-emoji-picker .epr-emoji-category-content {
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 0 !important;
+}
+
+/* Smaller emoji buttons */
+.custom-emoji-picker .epr-emoji {
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+}
+
+/* Align search icon and placeholder text */
+.custom-emoji-picker .epr-search-container {
+  position: relative !important;
+}
+
+.custom-emoji-picker .epr-search-container input {
+  padding-left: 38px !important;
+  padding-right: 10px !important;
+  text-align: left !important;
+  height: 34px !important;
+  line-height: normal !important;
+}
+
+/* Keep search icon properly positioned */
+.custom-emoji-picker .epr-search-container svg {
+  left: 12px !important;
+  right: auto !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Make search icon smaller */
+.custom-emoji-picker .epr-search-container svg {
+  width: 10px !important;
+  height: 10px !important;
+  left: 5px !important;
+  right: auto !important;
+  top: 10% !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Adjust placeholder spacing */
+.custom-emoji-picker .epr-search-container input {
+  padding-left: 32px !important;
+  font-size: 12px !important;
+}
+/* Make all emojis smaller */
+.custom-emoji-picker .epr-emoji {
+  font-size: 10px !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+}
+
+/* Reduce search section padding by 50% */
+.custom-emoji-picker .epr-header {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.custom-emoji-picker .epr-search-container {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.custom-emoji-picker .epr-search-container input {
+  padding: 3px 16px 3px 32px !important;
+}
+
+/* Reduce category navigation spacing */
+.custom-emoji-picker .epr-category-nav {
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 0 !important;
+}
+
+.custom-emoji-picker .epr-cat-btn {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Reduce category heading padding */
+.custom-emoji-picker .epr-emoji-category-label {
+  padding: 2px 4px !important;
+  margin: 0 !important;
+}
+
+/* Reduce spacing around emoji sections */
+.custom-emoji-picker .epr-emoji-category {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Line below category navigation */
+.custom-emoji-picker .epr-category-nav {
+  border-bottom: 1px solid #454545 !important;
+  padding-bottom: 6px !important;
+  margin-bottom: 6px !important;
+}
+/* Divider between emoji body and preview footer */
+.custom-emoji-picker .epr-preview {
+  border-top: 1px solid #454545;
+}
+/* Reduce emoji preview footer height */
+.custom-emoji-picker {
+  --epr-preview-height: 45px;
+}
+.members {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  font-size: 14px;
+}
+
+.members svg {
+  font-size: 20px;
+  color: #999;
+}
+
+.members i {
+  font-size: 20px;
+}
+
+/* @Mentions dropdown */
+.chat-input {
+  position: relative;
+}
+
+.mention-list {
+  position: absolute;
+  bottom: 65px;
+  left: 15px;
+  width: 180px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.mention-item {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+}
+
+.mention-item:hover {
+  background: #edf2f6;
+}
+/* Highlight mentioned usernames */
+.mentioned-user {
+  color: darkred;
+  font-weight: 600;
+  background-color: white;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
