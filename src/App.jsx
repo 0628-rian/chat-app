@@ -214,7 +214,6 @@ function App() {
               className="custom-emoji-picker"
               height={400}
               width={270}
-              emojiSize={16}
               theme="dark"
               previewConfig={{
                 showPreview: true,
