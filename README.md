@@ -1,16 +1,81 @@
-# React + Vite
+# React Chat App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive single-page chat application built using React.js, JavaScript, HTML and CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Random Usernames: Automatically assigns a username to each message from a predefined list (Alan, Bob, Carol, Dean and Elin).
+- Dynamic User Avatars: Displays user initials with randomly generated colors.
+- Interactive Messaging: Send and display messages with usernames and timestamps.
+- Message Likes: Like messages using a heart icon and view the updated like count.
+- emoji Picker:Select and insert emojis into chat messages.
+- @Mentions: Display username suggestions from the predefined user list.
+- Keyboard Navigation: Navigate mention suggestions using Arrow Up, Arrow Down, Enter and Escape.
+- Mention Highlighting: Highlights valid usernames mentioned using @.
+- Automatic Scrolling: Automatically scrolls to newly added messages.
+- Responsive Layout: Chat interface adapts to different screen sizes.
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React.js
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- Vite
+- Emoji Picker React
+- Font Awesome
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+Install Node.js and npm.
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/0628-rian/chat-app.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd chat-app
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+### Run the Application
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed in the terminal, usually `http://localhost:5173/`.
+
+## Stretch Goals
+
+### Implemented
+
+1. Emoji Integration: Added an emoji picker to insert emojis into chat messages.
+2. @Mentions: Added username suggestions, keyboard navigation and highlighting of valid mentions.
+
+### Not Implemented
+
+3. Socket.IO Communication: Express.js server and Socket.IO client-server communication have not been implemented.
+
+## Limitations
+
+- Messages and likes are stored using React state and are not persisted after a page refresh.
+- Usernames and liker assignments are simulated using a predefined list.
+- The application does not currently support real-time multi-user communication through a backend.
+
+## Author
+
+Developed as a React.js chat application assignment.
